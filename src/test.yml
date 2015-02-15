@@ -1,0 +1,13 @@
+title: Program, or be Programmed
+curator: Yeehaa
+description: >
+  While in theory, you could hardcode everything in HTML this becomes 
+  cumbersome quite rapidly. Computers are made to automate boring, difficult, 
+  error-prone, and repetitive tasks, so let's use that potential to the 
+  fullest.
+checkpoints:
+- title: Climb Trees
+- title: Manipulate Documents
+- title: Make Templates
+- title: Dig into Data
+- title: Repeat Yourself

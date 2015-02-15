@@ -1,0 +1,34 @@
+{
+  "name": "unacademic_react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "bundle.js",
+  "dependencies": {},
+  "devDependencies": {
+    "6to5-core": "^3.6.5",
+    "6to5-loader": "^3.0.0",
+    "babel-jest": "^4.0.0",
+    "css-loader": "^0.9.1",
+    "jest-cli": "^0.2.2",
+    "json-loader": "^0.5.1",
+    "jsx-loader": "^0.12.2",
+    "react": "^0.13.0-beta.1",
+    "react-tools": "^0.13.0-beta.1",
+    "style-loader": "^0.8.3",
+    "webpack": "^1.5.3",
+    "yaml-loader": "^0.1.0"
+  },
+  "scripts": {
+    "dev": "webpack-dev-server --devtool eval --progress --colors --content-base build",
+    "deploy": "NODE_ENV=production webpack -p",
+    "test": "jest"
+  },
+  "jest": {
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
+    "unmockedModulePathPatterns": [
+      "<rootDir>/node_modules/react"
+    ]
+  },
+  "author": "",
+  "license": "ISC"
+}
