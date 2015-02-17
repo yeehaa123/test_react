@@ -1,4 +1,5 @@
-var WebpackRewirePlugin = require('rewire-webpack');
+var webpackConfig = require('./webpack-karma.config')
+
 
 module.exports = function(config) {
   config.set({
@@ -20,18 +21,7 @@ module.exports = function(config) {
     browsers: ['PhantomJS'],
 
     reporters: [ 'dots' ],
+    webpack: webpackConfig
 
-    webpack: {
-      module: {
-        loaders: [
-          { test: /\.json$/, loader: 'json' },
-          { test: /\.yml$/, loader: 'json!yaml' },
-          { test: /\.css$/, loader: 'style!css' },
-          { test: /\.js$/, loader: 'babel'},
-          { test: /\.js$/, loader: 'jsx' }
-        ]
-      },
-      plugins: [new WebpackRewirePlugin()]
-    },
   });
 };
