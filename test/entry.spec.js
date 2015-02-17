@@ -1,13 +1,9 @@
-jest.dontMock('../src/components/card.js');
+import { React, TestUtils } from './react-helpers';
+import Card from '../src/components/card.js';
 
-describe('CheckboxWithLabel', function() {
-  var React;
-  var card;
-
+describe('Card', () => {
+  let card;
   beforeEach(() => {
-    React = require('react/addons');
-    var Card = require('../src/components/card.js');
-    var TestUtils = React.addons.TestUtils;
 
     var waypoint = {
       title: "Structure Documents",
@@ -23,6 +19,6 @@ describe('CheckboxWithLabel', function() {
 
   it('has the right title', function() {
     var title = React.findDOMNode(card).querySelector('hgroup h1').textContent;
-    expect(title).toEqual('Structure Documents');
+    expect(title).to.equal('Structure Documents');
   });
 });

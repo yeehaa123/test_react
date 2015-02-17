@@ -17,7 +17,7 @@ var config = {
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loader: 'json!yaml' },
       { test: /\.css$/, loader: 'style!css' },
-      { test: /\.js$/, loader: '6to5'},
+      { test: /\.js$/, loader: 'babel'},
       { test: /\.js$/, loader: 'jsx' }
     ]
   },
