@@ -11,10 +11,6 @@ let cardStyle = {
 
 class Card extends React.Component {
 
-  checkpoints() {
-    return this.props.model.checkpoints.map(checkpoint => <Checkpoint key={checkpoint.title} model={checkpoint}/>);
-  }
-
   render(){
     return (
       <section style={cardStyle}>
@@ -23,7 +19,6 @@ class Card extends React.Component {
           <p>{ this.props.model.curator }</p>
         </hgroup>
         <p>{ this.props.model.description }</p>
-        <ol>{ this.checkpoints() }</ol>
       </section>
     )
   }

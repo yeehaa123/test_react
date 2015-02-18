@@ -1,6 +1,7 @@
 var WebpackRewirePlugin = require('rewire-webpack');
 var  path = require('path');
 var node_modules_dir = path.join(__dirname, 'node_modules');
+console.log(__dirname);
 
 var deps = [
   'react.js',
@@ -15,7 +16,6 @@ var config =  {
       { test: /\.yml$/, loader: 'json!yaml' },
       { test: /\.css$/, loader: 'style!css' },
       { test: /\.js$/, loader: 'babel'},
-      { test: /\.js$/, loader: 'jsx' }
     ]
   },
   resolve: {

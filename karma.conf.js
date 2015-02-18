@@ -1,10 +1,8 @@
 var webpackConfig = require('./webpack-karma.config')
-
-
 module.exports = function(config) {
   config.set({
 
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'sinon-chai'],
 
     files: [
       'test/cards.spec.js'

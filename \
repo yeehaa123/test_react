@@ -1,30 +1,28 @@
+var WebpackRewirePlugin = require('rewire-webpack');
 var  path = require('path');
 var node_modules_dir = path.join(__dirname, 'node_modules');
+console.log(__dirname);
 
 var deps = [
-  'react/react',
-  './node_modules/reflux/index'
+  'react.js',
+  'addons.js',
 ];
 
-var config = {
-  entry: ['./src/entry.js'],
-  output: {
-    path: './build',
-    filename: 'bundle.js'
-  },
+var config =  {
   module: {
     noParse: [],
     loaders: [
-      { test: /\.js$/, loader: 'babel'},
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loader: 'json!yaml' },
-      { test: /\.css$/, loader: 'style!css' }
+      { test: /\.css$/, loader: 'style!css' },
+      { test: /\.js$/, loader: 'babel'}
     ]
   },
   resolve: {
     alias: {}
-  }
-}
+  },
+  plugins: [new WebpackRewirePlugin()]
+};
 
 deps.forEach(function (dep) {
   var depPath = path.resolve(node_modules_dir, dep);

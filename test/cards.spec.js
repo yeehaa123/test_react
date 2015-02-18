@@ -1,13 +1,13 @@
 import rewire from 'rewire';
-import { React, TestUtils, rewireModule, StubComponent } from './react-helpers';
+import { React, TestUtils, rewireModule, StubComponent } from './helpers/react-helpers';
 let Cards  = rewire('../src/components/cards.js');
 
-describe('Card', () => {
-  let container;
+rewireModule(Cards, {
+  Card: StubComponent
+});
 
-  rewireModule(Cards, {
-    Card: StubComponent
-  });
+describe("Card", () => {
+  let container;
 
   beforeEach(() => {
     container = TestUtils.renderIntoDocument(
@@ -15,8 +15,8 @@ describe('Card', () => {
     );
   })
 
-  it('has the right title', function() {
+  it("renders the cards", function() {
     var cards = React.findDOMNode(container).querySelectorAll('div');
-    expect(cards.length).to.equal(2);
+    expect(StubComponent.prototype.render).calledOnce;
   });
 });
