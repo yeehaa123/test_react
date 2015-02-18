@@ -1,5 +1,5 @@
 import React from 'react';
-import Checkpoint from './checkpoint';
+import Checkpoint from './checkpoint.js';
 
 let cardStyle = {
   backgroundColor: 'white',
@@ -10,6 +10,12 @@ let cardStyle = {
 };
 
 class Card extends React.Component {
+  renderCheckPoints() {
+    if(this.props.model.checkpoints){
+      let checkpoints = _.values(this.props.model.checkpoints);
+      return checkpoints.map((checkpoint) => <Checkpoint key={checkpoint.id} model={checkpoint} />);
+    }
+  }
 
   render(){
     return (
@@ -19,6 +25,7 @@ class Card extends React.Component {
           <p>{ this.props.model.curator }</p>
         </hgroup>
         <p>{ this.props.model.description }</p>
+        <ol>{ this.renderCheckPoints() }</ol>
       </section>
     )
   }
