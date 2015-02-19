@@ -10,10 +10,10 @@ let cardsStyle = {
   float: 'left'
 }
 
-class Cards extends React.Component {
+let Cards = React.createClass({
   render() {
     let waypoints = this.props.waypoints.map((waypoint) => {
-      return <Card key={waypoint.title} model={waypoint}/>
+      return <Card key={waypoint} model={waypoint}/>
     });
     return (
      <section style={cardsStyle}>
@@ -21,7 +21,7 @@ class Cards extends React.Component {
      </section>
     )
   }
-};
+});
 
 
 export default Cards;

@@ -11,12 +11,12 @@ describe("Card", () => {
 
   beforeEach(() => {
     container = TestUtils.renderIntoDocument(
-      <Cards />
+      <Cards waypoints={[1,2,3]}/>
     );
   })
 
   it("renders the cards", function() {
     var cards = React.findDOMNode(container).querySelectorAll('div');
-    expect(StubComponent.prototype.render).calledOnce;
+    expect(StubComponent.prototype.render).calledThrice;
   });
 });
