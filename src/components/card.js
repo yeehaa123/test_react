@@ -1,36 +1,21 @@
 import React from 'react';
 
-let styles = {
-  app: {
-    display: 'flex',
-    height: '100%'
-  },
-  sidebar: {
-    boxSizing: 'border-box',
-    color: 'white',
-    backgroundColor: 'black',
-    minWidth: '400px',
-    padding: '20px'
-  },
-  cards: {
-    display: 'flex',
-    padding: '20px',
-    overflowX: 'scroll'
-  },
-  card: {
-    boxSizing: 'border-box',
-    margin: '20px',
-    minWidth: '380px',
-    padding: '10px',
-    height: '70%',
-    border: '1px solid black'
+let styles = () => {
+  return {
+      boxSizing: 'border-box',
+      margin: '20px',
+      minWidth: '380px',
+      padding: '10px',
+      height: `${getRandomInt(30, 95)}%`,
+      border: '1px solid black'
   }
 }
+
 
 let Card = React.createClass({
   render(){
     return (
-      <section style={ styles.card }>
+      <section style={ styles() }>
         <hgroup>
           <h1>Fake Title</h1>
           <p>Fake Curator</p>
@@ -42,3 +27,6 @@ let Card = React.createClass({
 });
 
 export default Card;
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min)) + min;
+}

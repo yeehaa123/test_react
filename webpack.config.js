@@ -9,7 +9,7 @@ var csstyle = require('csstyle');
 
 var config = {
   entry: {
-    app: "./src/entry.js",
+    app: "./src/entry.jsx",
     vendor: [
       'react',
       'lodash',
@@ -24,7 +24,7 @@ var config = {
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: "babel-loader"},
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel"},
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loader: 'json!yaml' },
       { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css!postcss') }
@@ -36,9 +36,9 @@ var config = {
   ],
   postcss: [
     nested,
-    csstyle,
     customSelectors(),
     customProperties(),
+    csstyle,
     autoprefixer
   ]
 };

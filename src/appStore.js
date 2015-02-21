@@ -7,25 +7,71 @@ let assign = (target, source) => {
   });
 }
 
-let AppStore = Reflux.createStore({
-  history: Stack([Map({value: 1})]),
+let actions = Reflux.createActions([
+  "authenticate",
+  "revertHistory",
+  "forwardHistory"
+]);
+
+let History = Stack([])
+
+let Future =  Stack([]);
+
+let initialState = Map({
+  user: 'anonymous'
+});
+
+
+History = History.push(initialState);
+
+let HistoryStore = Reflux.createStore({
+
   init(){
-    setInterval(()=>{
-      this.updateHistory();
-      this.trigger(this.getState());
-    }, 1000)
+    this.listenTo(actions.revertHistory, this.revertHistory)
+    this.listenTo(actions.forwardHistory, this.forwardHistory)
   },
-  updateHistory(){
-    let oldState = this.history.first();
-    let newState = oldState.update('value', (value) => value + 1);
-    this.history = this.history.push(newState);
+
+  revertHistory(){
+    if(History.size > 1){
+      let lastState = History.first();
+      Future = Future.push(lastState);
+      History = History.shift();
+      let oldState = History.first();
+      this.trigger(oldState);
+    }
   },
+
+  forwardHistory(){
+    if(Future.size){
+      let lastState = Future.first();
+      History = History.push(lastState);
+      Future = Future.shift();
+      let oldState = History.first();
+      this.trigger(oldState);
+    }
+  },
+
   getHistory(){
-    return this.history;
+    return History;
   },
+
   getState(){
-    return this.history.first();
+    return History.first();
   }
 });
 
-export default AppStore;
+let AppStore = Reflux.createStore({
+
+  init(){
+    this.listenTo(actions.authenticate, this.authenticate)
+  },
+
+  authenticate(){
+    let oldState = History.first();
+    let newState = oldState.update('user', () => 'yeehaa');
+    History = History.push(newState);
+    this.trigger(newState);
+  }
+});
+
+export { actions, HistoryStore, AppStore };
