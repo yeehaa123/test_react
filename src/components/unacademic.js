@@ -1,37 +1,73 @@
+import 'normalize.css/normalize.css';
 import React from 'react';
-import Sidebar from './sidebar';
-import Cards from './cards';
+import Reflux from 'reflux';
+import AppStore from '../appStore';
+import Card from './card';
+import css from '../app.css';
 
-import mach from 'mach';
-import _ from 'lodash';
-
-class Unacademic extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.state = { waypoints: props.initialWaypoints };
+let styles = {
+  app: {
+    display: 'flex',
+    height: '100%'
+  },
+  cards: {
+    display: 'flex',
+    padding: '20px',
+    overflowX: 'scroll'
+  },
+  card: {
+    boxSizing: 'border-box',
+    margin: '20px',
+    minWidth: '380px',
+    padding: '10px',
+    height: '70%',
+    border: '1px solid black'
   }
+}
 
-  componentDidMount(){
-    mach.get('https://cth-curriculum.firebaseio.com/waypoint/yeehaa.json')
-      .then((conn) => {
-        let waypoints = _.values(JSON.parse(conn.responseText));
-        this.setState({waypoints});
-      });
-  }
+let Unacademic = React.createClass({
+
+  getInitialState(){
+    let value = AppStore.getState().get('value');
+    return { value }
+  },
+
+  componentDidMount() {
+    this.unsubscribe = AppStore.listen(this.onChange);
+  },
+  componentWillUnmount() {
+    this.unsubscribe();
+  },
+
+  onChange(appState){
+    let value = appState.get('value');
+    return this.replaceState({value});
+  },
+
+  debugger(object){
+    let row = (key, value) => {
+      return <tr key={key}><td>{key} - { value }</td></tr>
+    };
+    return (
+      <table className="debugger">
+        { _.map(object, (value, key) =>  row(key, value) )}
+      </table>
+    )
+  },
 
   render() {
     return (
-      <div>
-        <Sidebar/>
-        <Cards waypoints={ this.state.waypoints}/>
+      <div className="app" style={ styles.app }>
+        <div className="sidebar">
+          <h1>_Unacademic</h1>
+          { this.debugger(this.state) }
+        </div>
+        <div className="cards" style={ styles.cards }>
+          { _.times(20, (index) => <Card key={ index }/> )}
+        </div>
       </div>
     )
   }
-};
-
-Unacademic.defaultProps = {
-  initialWaypoints: []
-}
+});
 
 export default Unacademic;

@@ -1,34 +1,44 @@
 import React from 'react';
-import Checkpoint from './checkpoint.js';
 
-let cardStyle = {
-  backgroundColor: 'white',
-  width: '400px',
-  margin: '20px',
-  padding: '20px',
-  float: 'left'
-};
-
-class Card extends React.Component {
-  renderCheckPoints() {
-    if(this.props.model.checkpoints){
-      let checkpoints = _.values(this.props.model.checkpoints);
-      return checkpoints.map((checkpoint) => <Checkpoint key={checkpoint.id} model={checkpoint} />);
-    }
+let styles = {
+  app: {
+    display: 'flex',
+    height: '100%'
+  },
+  sidebar: {
+    boxSizing: 'border-box',
+    color: 'white',
+    backgroundColor: 'black',
+    minWidth: '400px',
+    padding: '20px'
+  },
+  cards: {
+    display: 'flex',
+    padding: '20px',
+    overflowX: 'scroll'
+  },
+  card: {
+    boxSizing: 'border-box',
+    margin: '20px',
+    minWidth: '380px',
+    padding: '10px',
+    height: '70%',
+    border: '1px solid black'
   }
+}
 
+let Card = React.createClass({
   render(){
     return (
-      <section style={cardStyle}>
+      <section style={ styles.card }>
         <hgroup>
-          <h1>{ this.props.model.title }</h1>
-          <p>{ this.props.model.curator }</p>
+          <h1>Fake Title</h1>
+          <p>Fake Curator</p>
         </hgroup>
-        <p>{ this.props.model.description }</p>
-        <ol>{ this.renderCheckPoints() }</ol>
+        <p>Lorem Ipsum Bla di Bla</p>
       </section>
     )
   }
-}
+});
 
 export default Card;

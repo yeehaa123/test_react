@@ -23,5 +23,4 @@ let Cards = React.createClass({
   }
 });
 
-
 export default Cards;
