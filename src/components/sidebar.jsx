@@ -33,11 +33,11 @@ let Sidebar = React.createClass({
     return (
       <div className="sidebar">
         <div>
-          <h1>_Unacademic !!</h1>
-          <h2> Learn By Dwelling</h2>
+          <h1>_Unacademic</h1>
+          <p> Learn By Dwelling</p>
         </div>
         <DebugState object={this.state}/>
-        <ControlPanel user={this.state.user} />
+        <ControlPanel mode={ this.state.mode } user={this.state.user} />
       </div>
     )
   }

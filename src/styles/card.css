@@ -1,0 +1,59 @@
+component(card){
+  boxSizing: border-box;
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  min-width: 380px;
+  max-width: 580px;
+  padding: 15px;
+  border: 1px solid black;
+
+  img {
+    width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+  }
+
+  img:hover {
+    filter: grayscale(0%);
+  }
+
+  hgroup {
+    background-color: black;
+    color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+
+    h1 {
+      font-size: 20px;
+      text-align: center;
+      margin: 0;
+    }
+  }
+
+  section {
+    padding: 10px;
+    border-bottom: 1px solid black;
+  }
+
+  section:last-of-type {
+    border-bottom: none;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+  }
+
+  button {
+    border: none;
+    height: 45px;
+    margin-bottom: 5px;
+  }
+
+  .checkpoint {
+    span {
+      margin-right: 30px;
+    }
+  }
+}

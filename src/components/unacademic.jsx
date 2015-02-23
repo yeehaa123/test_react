@@ -1,8 +1,9 @@
 import React from 'react';
 import Actions from '../actions/index';
 
-import Cards from './cards.jsx';
 import Sidebar from './sidebar.jsx';
+import Main from './main.jsx';
+import 'normalize.css/normalize.css';
 import css from '../styles/app.css';
 
 let Unacademic = React.createClass({
@@ -15,7 +16,7 @@ let Unacademic = React.createClass({
     return (
       <section className="app">
         <Sidebar />
-        <Cards />
+        <Main />
       </section>
     )
   }

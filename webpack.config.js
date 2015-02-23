@@ -1,6 +1,5 @@
 var webpack = require('webpack');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 var autoprefixer = require('autoprefixer-core');
 var customProperties = require('postcss-custom-properties');
 var customSelectors = require('postcss-custom-selectors');

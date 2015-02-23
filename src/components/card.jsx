@@ -1,20 +1,31 @@
 import React from 'react';
-
-let styles = () => {
-  return {
-    height: `${getRandomInt(30, 95)}%`
-  }
-}
+import Checkpoint from './checkpoint.jsx';
+import '../styles/card.css';
 
 let Card = React.createClass({
   render(){
     return (
-      <section className="card" style={ styles() }>
+      <section className="card">
         <hgroup>
-          <h1>Fake Title</h1>
-          <p>Fake Curator</p>
+          <h1>{ this.props.model.title }</h1>
         </hgroup>
-        <p>Lorem Ipsum Bla di Bla</p>
+        <img src={ this.props.model.image }></img>
+        <section>
+          <p>{ this.props.model.summary }</p>
+        </section>
+        <section>
+          <p>{ this.props.model.curator }</p>
+        </section>
+        <section>
+          { this.props.model.description.map((paragraph, index) => <p key={ index }>{ paragraph }</p>) }
+        </section>
+        <section>
+          { this.props.model.checkpoints.map((checkpoint, index) => <Checkpoint key={ index } checkpoint={ checkpoint } />) }
+        </section>
+        <nav>
+          <button>Explore</button>
+          <button>Start</button>
+        </nav>
       </section>
     )
   }

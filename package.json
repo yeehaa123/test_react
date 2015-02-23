@@ -5,6 +5,7 @@
   "main": "bundle.js",
   "dependencies": {
     "extract-text-webpack-plugin": "^0.3.8",
+    "faker": "^2.1.2",
     "immutable": "^3.6.2",
     "lodash": "^3.3.0",
     "normalize.css": "^3.0.2",
