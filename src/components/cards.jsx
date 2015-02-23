@@ -6,12 +6,12 @@ import faker from 'faker';
 class Waypoint {
   constructor(index) {
     this.id = index;
-    this.title = faker.lorem.words(2).join(' ');
+    this.title = faker.lorem.words(getRandomInt(1,4)).join(' ');
     this.image = faker.image.image();
     this.curator = 'Yeehaa';
     this.summary = faker.lorem.sentence();
     this.description = _.times(getRandomInt(1,3), () => faker.lorem.paragraph() );
-    this.checkpoints = _.times(getRandomInt(2,6), () => faker.lorem.words(2,5).join(' '));
+    this.checkpoints = _.times(getRandomInt(2,6), () => faker.lorem.words(getRandomInt(1,4)).join(' '));
   };
 };
 
