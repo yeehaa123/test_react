@@ -9,7 +9,11 @@ var csstyle = require('csstyle');
 
 var config = {
   entry: {
-    app: "./src/entry.jsx",
+    app: [
+      'webpack-dev-server/client?http://localhost:8080',
+      'webpack/hot/only-dev-server',
+      './src/entry.jsx'
+    ],
     vendor: [
       'react',
       'lodash',
@@ -24,15 +28,17 @@ var config = {
   },
   module: {
     loaders: [
-      { test: /\.(js|jsx)$/, exclude: /node_modules/, loader: "babel"},
+      { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loader: 'json!yaml' },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css!postcss') }
+      { test: /\.css$/, loader: 'style-loader!css!postcss' },
+      { test: /\.(png|woff)$/, loader: 'url-loader?limit=100000' }
     ]
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin("vendor", "vendor.bundle.js"),
-    new ExtractTextPlugin("style.css")
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoErrorsPlugin()
   ],
   postcss: [
     nested,

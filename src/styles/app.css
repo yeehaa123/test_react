@@ -1,6 +1,29 @@
+@font-face {
+  font-family: NittyNormal;
+  src: url('../assets/fonts/NN.woff') format('woff');
+}
+
+@font-face {
+  font-family: NittyBold;
+  src: url('../assets/fonts/NB.woff') format('woff');
+}
+
 :root {
   --inverse: white;
   --highlight: red;
+}
+component(app){
+  display: flex;
+  font-family: NittyNormal;
+  height: 100%;
+}
+
+component(card){
+  boxSizing: border-box;
+  margin: 20px;
+  min-width: 380px;
+  padding: 10px;
+  border: 1px solid black;
 }
 
 component(sidebar) {
@@ -12,7 +35,9 @@ component(sidebar) {
   padding: 20px;
   min-width: 400px;
   background-color: black;
-
+  button {
+    color: black
+  }
 }
 
 component(debugger){
@@ -20,7 +45,7 @@ component(debugger){
 }
 
 table {
-  color: #333; /* Lighten up font color */
+  color: #333;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
