@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from '../actions/index';
+import ModeButton from './modeButton.jsx';
 
 let ModeButtons = React.createClass({
 
@@ -7,11 +8,14 @@ let ModeButtons = React.createClass({
     Actions.authenticate();
   },
 
-  learn(){
-    Actions.learn();
-  },
-
   render(){
+
+    let modes = [
+      'browse',
+      'learn',
+      'curate'
+    ];
+
     if(! this.props.user){
       return (
         <section className="authenticate">
@@ -21,9 +25,7 @@ let ModeButtons = React.createClass({
     } else {
       return (
         <section className="modeButtons">
-          <button className={ this.props.mode === 'browse' ? 'active' : null} onClick={ this.learn }>Browse</button>
-          <button className={ this.props.mode === 'learn' ? 'active' : null} onClick={ this.learn }>Learn</button>
-          <button className={ this.props.mode === 'curate' ? 'active' : null} onClick={ this.learn }>Active</button>
+          { modes.map((mode, index) => <ModeButton key={index} mode={mode} currentMode={this.props.mode}/>) }
         </section>
       )
     }

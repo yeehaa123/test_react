@@ -1,6 +1,6 @@
 import React from 'react';
 import Cards from './cards.jsx';
-import '../styles/card.css';
+import '../../styles/card.css';
 
 let Main = React.createClass({
   render() {

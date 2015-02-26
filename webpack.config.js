@@ -11,7 +11,7 @@ var config = {
     app: [
       'webpack-dev-server/client?http://localhost:8080',
       'webpack/hot/only-dev-server',
-      './src/entry.jsx'
+      './src/scripts/entry.jsx'
     ],
     vendor: [
       'react',
@@ -25,6 +25,7 @@ var config = {
     path: './build',
     filename: "bundle.js"
   },
+  devtool: 'eval-source-map',
   module: {
     loaders: [
       { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},

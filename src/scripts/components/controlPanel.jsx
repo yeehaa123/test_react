@@ -1,16 +1,15 @@
 import React from 'react';
 import Actions from '../actions/index';
-import { HistoryStore, AppStore } from '../stores/index';
 import ModeButtons from './modeButtons.jsx'
 
 let ControlPanel = React.createClass({
 
   revertHistory(){
-    Actions.revertHistory();
+    Actions.revert();
   },
 
   forwardHistory(){
-    Actions.forwardHistory();
+    Actions.forward();
   },
 
   render() {

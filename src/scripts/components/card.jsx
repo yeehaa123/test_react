@@ -1,6 +1,6 @@
 import React from 'react';
 import Checkpoint from './checkpoint.jsx';
-import '../styles/card.css';
+import '../../styles/card.css';
 
 let Card = React.createClass({
   render(){

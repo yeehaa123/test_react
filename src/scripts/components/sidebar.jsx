@@ -1,32 +1,25 @@
 import React from 'react';
 import DebugState from './debugState.jsx';
-import { HistoryStore, AppStore } from '../stores/index';
+import { History, AppState } from '../stores/index';
 import ControlPanel from './controlPanel.jsx'
 
 let Sidebar = React.createClass({
 
   getInitialState(){
-    return {
-      user: undefined
-    }
+    return AppState.current;
   },
 
   componentDidMount() {
-    this.unsubscribeAppStore = AppStore.listen(this.onChange);
+    AppState.addChangeListener(this._onChange);
   },
+
   componentWillUnmount() {
-    this.unsubscribeAppStore();
+    AppState.removeChangeListener(this._onChange);
   },
 
-  onChange(appState){
-    let state = this.updateState(appState);
+  _onChange(){
+    let state = AppState.current;
     return this.replaceState(state);
-  },
-
-  updateState(state){
-    let user = state.get('user');
-    let mode = state.get('mode');
-    return { user, mode };
   },
 
   render() {
