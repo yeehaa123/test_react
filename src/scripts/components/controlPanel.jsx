@@ -1,28 +1,41 @@
 import React from 'react';
 import Actions from '../actions/index';
-import ModeButtons from './modeButtons.jsx'
+import { AppState } from '../stores/index';
 
-let ControlPanel = React.createClass({
+import HistoryButtons from './historyButtons.jsx';
+import AuthenticateButton from './authenticate.jsx';
+import ModeButtons from './modeButtons.jsx';
 
-  revertHistory(){
-    Actions.revert();
-  },
+class ControlPanel extends React.Component {
 
-  forwardHistory(){
-    Actions.forward();
-  },
+  constructor(props){
+    super(props);
+    this._onChange = this._onChange.bind(this);
+    let { user } = AppState.current;
+    this.state = { user };
+  }
+
+  componentDidMount() {
+    AppState.addChangeListener(this._onChange);
+  }
+
+  componentWillUnmount() {
+    AppState.removeChangeListener(this._onChange);
+  }
+
+  _onChange(){
+    let { user } = AppState.current;
+    this.setState({ user });
+  }
 
   render() {
     return (
       <section className="controlPanel">
-        <div className="historyButtons">
-          <button onClick={ this.revertHistory }>Revert History</button>
-          <button onClick={ this.forwardHistory }>Forward History</button>
-        </div>
-        <ModeButtons user={ this.props.user } mode={ this.props.mode }/>
+        <HistoryButtons />
+        { this.state.user ? <ModeButtons /> : <AuthenticateButton /> }
       </section>
     )
   }
-});
+};
 
 export default ControlPanel;

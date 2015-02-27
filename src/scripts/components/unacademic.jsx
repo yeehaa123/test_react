@@ -1,13 +1,11 @@
-import React from 'react';
-import Actions from '../actions/index';
-
-import Sidebar from './sidebar.jsx';
-import Main from './main.jsx';
 import 'normalize.css/normalize.css';
 import css from '../../styles/app.css';
 
-let Unacademic = React.createClass({
+import React from 'react';
+import Sidebar from './sidebar.jsx';
+import Main from './main.jsx';
 
+class Unacademic extends React.Component{
   render() {
     return (
       <section className="app">
@@ -16,6 +14,6 @@ let Unacademic = React.createClass({
       </section>
     )
   }
-});
+};
 
 export default Unacademic;

@@ -5,6 +5,7 @@ var customProperties = require('postcss-custom-properties');
 var customSelectors = require('postcss-custom-selectors');
 var nested = require('postcss-nested');
 var csstyle = require('csstyle');
+var variables = require('./src/styles/variables');
 
 var config = {
   entry: {
@@ -43,7 +44,7 @@ var config = {
   postcss: [
     nested,
     customSelectors(),
-    customProperties(),
+    customProperties({variables: variables}),
     csstyle,
     autoprefixer
   ]

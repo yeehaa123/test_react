@@ -8,24 +8,19 @@
   src: url('../assets/fonts/NB.woff') format('woff');
 }
 
-:root {
-  --inverse: white;
-  --highlight: red;
-}
-
 ::-webkit-scrollbar { 
     display: none; 
   }
 
 button {
   font-size: 13px;
-  background: black;
-  color: white;
+  background: var(--darkBaseColor);
+  color: var(--inverse);
   padding: 10px 20px 10px 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   text-decoration: none;
-  border: 1px solid white;
+  border: 1px solid var(--inverseColor);
 }
 
 table {
@@ -35,7 +30,7 @@ table {
 }
 
 td, th {
-  border: 2px solid black;
+  border: 2px solid var(--baseColor);
   height: 30px;
 }
 
@@ -63,26 +58,16 @@ component(cards){
 component(main){
   display: flex;
   justify-content: space-between;
+  background-color: var(--lightBaseColor);
   flex-direction: column;
   height: 100%;
 }
 
 component(timeline){
+  display: none;
   height: 200px;
-  background-color: darkgrey;
+  background-color: var(--betweenBaseColor);
 }
-
-component(sidebar) {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  color: var(--inverse);
-  padding: 20px;
-  min-width: 400px;
-  background-color: black;
-}
-
 
 component(historyButtons){
   display: flex;
@@ -99,7 +84,7 @@ component(modeButtons){
    width: 31%;
   }
   button.active {
-    color: var(--highlight);
+    color: var(--highlightColor);
   }
 }
 
@@ -110,13 +95,14 @@ component(authenticate){
    width: 100%;
   }
   button.active {
-    color: var(--highlight);
+    color: var(--highlightColor);
   }
 }
 
 
 component(debugger){
-  color: var(--inverse);
-  background-color: darkgrey;
+  display: none;
+  color: var(--inverseColor);
+  background-color: var(--baseColor);
 }
 

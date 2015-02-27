@@ -17,16 +17,16 @@ class Waypoint {
 
 let waypoints = _.times(10, (i) => new Waypoint(i) );
 
-let Cards = React.createClass({
+class Cards extends React.Component {
   render(){
-    let cards =  _.map(waypoints, (waypoint) => <Card key={ waypoint.id } model={ waypoint }/> );
+
     return (
       <section className="cards">
-        { cards }
+        { _.map(waypoints, (waypoint) => <Card key={ waypoint.id } model={ waypoint }/>) }
       </section>
     )
   }
-});
+}
 
 export default Cards;
 

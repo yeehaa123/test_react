@@ -2,11 +2,10 @@ component(card){
   boxSizing: border-box;
   display: flex;
   flex-direction: column;
-  margin: 20px;
-  min-width: 380px;
-  max-width: 580px;
-  padding: 15px;
-  border: 1px solid black;
+  margin: var(--baseUnit);
+  min-width: calc(12 * var(--baseUnit));
+  max-width: calc(12 * var(--baseUnit));
+  background-color: var(--inverseColor);
 
   img {
     width: 100%;
@@ -19,20 +18,20 @@ component(card){
   }
 
   hgroup {
-    background-color: black;
-    color: white;
-    padding: 15px;
+    color: var(--baseColor);
+    padding: 20px 30px;
     margin-bottom: 15px;
 
     h1 {
-      font-size: 20px;
-      text-align: center;
+      font-family: 'NittyBold';
+      font-size: 28px;
+      line-height: 30px;
       margin: 0;
     }
   }
 
   section {
-    padding: 10px;
+    padding: 30px;
     border-bottom: 1px solid black;
   }
 

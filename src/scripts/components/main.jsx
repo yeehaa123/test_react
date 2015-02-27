@@ -2,7 +2,7 @@ import React from 'react';
 import Cards from './cards.jsx';
 import '../../styles/card.css';
 
-let Main = React.createClass({
+class Main extends React.Component {
   render() {
     return (
       <section className="main">
@@ -11,6 +11,6 @@ let Main = React.createClass({
       </section>
     )
   }
-});
+}
 
 export default Main;
