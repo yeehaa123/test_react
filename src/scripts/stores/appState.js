@@ -1,49 +1,53 @@
 import BaseStore from './BaseStore';
 import { Map, Stack }  from 'immutable';
-import Actions from '../actions/index.js';
 import AppStateConstants from '../constants/AppStateConstants'
 
-let _CurrentState = Map({
+let _History;
+let _Future;
+
+let initialState = {
   timestamp: Date.now(),
   user: undefined,
-  mode: 'browse'
-});
-
-let _History = Stack([_CurrentState])
-let _Future =  Stack([]);
+  mode: 'browse',
+};
 
 class AppState extends BaseStore {
 
-  get current() {
-    return _CurrentState.toJS();
+  constructor(){
+    this.initialState = Map(initialState);
+    this.initializeHistory(initialState);
+    super();
   }
 
-  learn(){
-    this.update({ mode: 'learn'});
+  get _current(){
+    return _History.first();
+  }
+
+  get current() {
+    let currentState = this._current.toJS();
+    currentState.isLatest = _Future.size < 1 ? true : false;
+    currentState.isEarliest = _History.size <= 1 ? true : false;
+    return currentState;
+  }
+
+  initializeHistory(){
+    _History = Stack([this.initialState])
+    _Future =  Stack([]);
   }
 
   authenticate(){
     this.update({ user: 'yeehaa' })
   }
 
-  update(props){
-    props.timestamp = Date.now();
-    _History = _History.push(_CurrentState.merge(props));
-    _Future = Stack([]);
-    this.set();
-  }
-
-  set(){
-    _CurrentState = _History.first();
-    this.emitChange();
+  switchMode(mode){
+    this.update({ mode: mode });
   }
 
   revert(){
     if(_History.size > 1){
-      let lastState = _History.first();
-      _Future = _Future.push(lastState);
+      _Future = _Future.push(this._current);
       _History = _History.shift();
-      this.set();
+      this.emitChange();
     }
   }
 
@@ -52,29 +56,29 @@ class AppState extends BaseStore {
       let lastState = _Future.first();
       _History = _History.push(lastState);
       _Future = _Future.shift();
-      this.set();
+      this.emitChange();
     }
   }
 
-  switchMode(mode){
-    this.update({ mode: mode });
+  update(props){
+    props.timestamp = Date.now();
+    _History = _History.push(this._current.merge(props));
+    _Future = Stack([]);
+    this.emitChange();
   }
 
   handleAction(action){
     switch(action.actionType) {
-      case AppStateConstants.LEARN:
-        this.learn();
+      case AppStateConstants.AUTHENTICATE:
+        this.authenticate();
         break;
       case AppStateConstants.SWITCH_MODE:
         this.switchMode(action.mode);
         break;
-      case AppStateConstants.AUTHENTICATE:
-        this.authenticate();
-        break;
-      case AppStateConstants.REVERT:
+      case AppStateConstants.REVERT_HISTORY:
         this.revert();
         break;
-      case AppStateConstants.FORWARD:
+      case AppStateConstants.FORWARD_HISTORY:
         this.forward();
         break;
     }
@@ -82,4 +86,5 @@ class AppState extends BaseStore {
   }
 }
 
-export default new AppState();
+
+export default AppState;

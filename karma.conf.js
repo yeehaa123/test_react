@@ -5,11 +5,11 @@ module.exports = function(config) {
     frameworks: ['mocha', 'sinon-chai'],
 
     files: [
-      'test/cards.spec.js'
+      'test/**/*.spec.js'
     ],
 
     preprocessors: {
-      'test/*cards.spec.js': ['webpack']
+      'test/**/*.spec.js': ['webpack']
     },
 
     reporters: ['progress'],

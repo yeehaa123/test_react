@@ -1,10 +1,12 @@
 import AppDispatcher from '../dispatcher/AppDispatcher.js'
 import { EventEmitter } from 'events';
+import _ from 'lodash';
+
 const CHANGE_EVENT = 'CHANGE';
 
 class Store extends EventEmitter {
   constructor(){
-    this.dispatcherIndex = AppDispatcher.register(this.handleAction.bind(this));
+    this.dispatcherIndex = AppDispatcher.register(_.bind(this.handleAction, this));
   }
 
   emitChange() {

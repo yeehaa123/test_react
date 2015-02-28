@@ -1,3 +1,5 @@
-import AppState from './appState.js';
-import History from './history.js';
-export { AppState, History };
+import AppStateStore from './appState.js';
+
+let AppState = new AppStateStore();
+
+export { AppState };

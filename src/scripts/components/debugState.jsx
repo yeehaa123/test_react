@@ -32,7 +32,7 @@ class DebugState extends React.Component {
   }
 
   row(key, value){
-    return <tr key={key}><td>{key}</td><td>{ value || '---' }</td></tr>
+    return <tr key={key}><td>{key}</td><td>{ `${value}` || '---' }</td></tr>
   }
 
   render(){

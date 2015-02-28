@@ -6,8 +6,8 @@ import ModeButton from './modeButton.jsx';
 class ModeButtons extends React.Component {
 
   constructor(props){
-    this._onChange = this._onChange.bind(this);
     super(props);
+    this._onChange = this._onChange.bind(this);
     let { mode } = AppState.current;
     this.state = { mode };
   }

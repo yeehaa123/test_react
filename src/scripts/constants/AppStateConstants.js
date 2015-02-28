@@ -4,8 +4,8 @@ let constants = keyMirror({
   'AUTHENTICATE': null,
   'LEARN': null,
   'SWITCH_MODE': null,
-  'REVERT': null,
-  'FORWARD': null,
+  'REVERT_HISTORY': null,
+  'FORWARD_HISTORY': null,
 });
 
 export default constants;

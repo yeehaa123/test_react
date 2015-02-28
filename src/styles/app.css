@@ -101,7 +101,6 @@ component(authenticate){
 
 
 component(debugger){
-  display: none;
   color: var(--inverseColor);
   background-color: var(--baseColor);
 }

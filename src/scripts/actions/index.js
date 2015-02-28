@@ -16,14 +16,14 @@ let Actions = {
   },
   revert(){
     AppDispatcher.dispatch({
-      actionType: AppStateConstants.REVERT
+      actionType: AppStateConstants.REVERT_HISTORY
     });
   },
   forward(){
     AppDispatcher.dispatch({
-      actionType: AppStateConstants.FORWARD
+      actionType: AppStateConstants.FORWARD_HISTORY
     });
   }
-}
+};
 
 export default Actions;
