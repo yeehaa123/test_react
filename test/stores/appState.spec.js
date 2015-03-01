@@ -36,25 +36,28 @@ describe('AppState', () => {
 
   it('sets up the initial state', () => {
     let state = AppState.current;
+    let { isLatest, isEarliest } = state.details;
     expect(state).to.include.keys('user', 'mode', 'timestamp');
-    expect(state.isLatest).to.be.true;
-    expect(state.isEarliest).to.be.true;
+    expect(isLatest).to.be.true;
+    expect(isEarliest).to.be.true;
   });
 
   it('authenticates the user', () => {
     callback(actionAuthenticate);
-    let state = AppState.current;
-    expect(state.user).to.equal('yeehaa');
-    expect(state.isLatest).to.be.true;
-    expect(state.isEarliest).to.be.false;
+    let { user, details } = AppState.current;
+    let { isLatest, isEarliest } = details;
+    expect(user).to.equal('yeehaa');
+    expect(isLatest).to.be.true;
+    expect(isEarliest).to.be.false;
   });
 
   it('switches between modes', () => {
     callback(actionSwitchMode);
-    let state = AppState.current;
-    expect(state.mode).to.equal('learn');
-    expect(state.isLatest).to.be.true;
-    expect(state.isEarliest).to.be.false;
+    let { mode, details } = AppState.current;
+    let { isLatest, isEarliest } = details;
+    expect(mode).to.equal('learn');
+    expect(isLatest).to.be.true;
+    expect(isEarliest).to.be.false;
   });
 
   describe('travel back in time', () => {
@@ -64,9 +67,9 @@ describe('AppState', () => {
 
     it('succeeds', () => {
       callback(actionRevertHistory);
-      let state = AppState.current;
-      expect(state.isLatest).to.be.false;
-      expect(state.isEarliest).to.be.true;
+      let { isLatest, isEarliest } = AppState.current.details;
+      expect(isLatest).to.be.false;
+      expect(isEarliest).to.be.true;
     });
   });
 
@@ -78,9 +81,9 @@ describe('AppState', () => {
 
     it('succeeds', () => {
       callback(actionForwardHistory);
-      let state = AppState.current;
-      expect(state.isLatest).to.be.true;
-      expect(state.isEarliest).to.be.false;
+      let { isLatest, isEarliest } = AppState.current.details;
+      expect(isLatest).to.be.true;
+      expect(isEarliest).to.be.false;
     });
   });
-})
+});

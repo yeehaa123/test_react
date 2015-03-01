@@ -25,8 +25,10 @@ class AppState extends BaseStore {
 
   get current() {
     let currentState = this._current.toJS();
-    currentState.isLatest = _Future.size < 1 ? true : false;
-    currentState.isEarliest = _History.size <= 1 ? true : false;
+    let details = {};
+    details.isLatest = _Future.size < 1 ? true : false;
+    details.isEarliest = _History.size <= 1 ? true : false;
+    currentState.details = details;
     return currentState;
   }
 
@@ -43,7 +45,7 @@ class AppState extends BaseStore {
     this.update({ mode: mode });
   }
 
-  revert(){
+  revertHistory(){
     if(_History.size > 1){
       _Future = _Future.push(this._current);
       _History = _History.shift();
@@ -51,7 +53,7 @@ class AppState extends BaseStore {
     }
   }
 
-  forward(){
+  forwardHistory(){
     if(_Future.size > 0){
       let lastState = _Future.first();
       _History = _History.push(lastState);
@@ -76,10 +78,10 @@ class AppState extends BaseStore {
         this.switchMode(action.mode);
         break;
       case AppStateConstants.REVERT_HISTORY:
-        this.revert();
+        this.revertHistory();
         break;
       case AppStateConstants.FORWARD_HISTORY:
-        this.forward();
+        this.forwardHistory();
         break;
     }
     return true;

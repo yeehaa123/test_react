@@ -14,12 +14,12 @@ let Actions = {
       mode: mode
     });
   },
-  revert(){
+  revertHistory(){
     AppDispatcher.dispatch({
       actionType: AppStateConstants.REVERT_HISTORY
     });
   },
-  forward(){
+  forwardHistory(){
     AppDispatcher.dispatch({
       actionType: AppStateConstants.FORWARD_HISTORY
     });

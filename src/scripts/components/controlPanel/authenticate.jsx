@@ -1,6 +1,5 @@
 import React from 'react';
-import Actions from '../actions/index';
-import ModeButtons from './modeButtons.jsx'
+import Actions from '../../actions/index';
 
 let Authenticate = React.createClass({
 

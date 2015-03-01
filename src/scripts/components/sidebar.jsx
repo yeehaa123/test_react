@@ -2,9 +2,13 @@ import '../../styles/sidebar.css';
 
 import React from 'react';
 import DebugState from './debugState.jsx';
-import ControlPanel from './controlPanel.jsx'
+import ControlPanelContainer from './controlPanel/controlPanelContainer.jsx'
 
 class Sidebar extends React.Component {
+
+  shouldComponentUpdate(){
+    return false;
+  }
 
   render() {
     return (
@@ -14,7 +18,7 @@ class Sidebar extends React.Component {
           <p> Learn By Dwelling</p>
         </div>
         <DebugState />
-        <ControlPanel />
+        <ControlPanelContainer />
       </div>
     )
   }
