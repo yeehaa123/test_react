@@ -13,33 +13,45 @@
   }
 
 button {
+  font-family: NittyBold;
+  box-sizing: border-box;
   font-size: 13px;
-  background: var(--darkBaseColor);
-  color: var(--inverse);
+  height: calc(var(--baseUnit) * 1.5);
+  background: var(--inverseColor);
+  color: var(--baseColor);
   padding: 10px 20px 10px 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   text-decoration: none;
-  border: 1px solid var(--inverseColor);
+  border: none;
 }
 
 table {
+  font-size: 13px;
+  box-sizing: border-box;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0;
 }
 
 td, th {
-  border: 2px solid var(--baseColor);
-  height: 30px;
+  box-sizing: border-box;
+  border: none;
+  height: calc(var(--baseUnit) * 1.5);
+
+
 }
 
 th {
   font-weight: bold;
+  color: var(--inverseColor);
+  background-color: var(--baseColor);
+  width: 100%;
 }
 
 td {
   text-align: center;
+  width: 50%;
 }
 
 component(app){
@@ -73,7 +85,15 @@ component(historyButtons){
   display: flex;
   justify-content: space-between;
   button {
-    width: 48%;
+    width: (100%/2);
+    height: calc(var(--baseUnit) * 2);
+    &:hover {
+      color: var(--highlightColor);
+    }
+    &:disabled {
+      color: var(--lightBaseColor);
+      background-color: var(--betweenBaseColor);
+    }
   }
 }
 
@@ -81,10 +101,11 @@ component(modeButtons){
   display: flex;
   justify-content: space-between;
   button {
-   width: 31%;
+   width: calc(100%/3);
   }
   button.active {
-    color: var(--highlightColor);
+    background-color: var(--baseColor);
+    color: var(--inverseColor);
   }
 }
 
@@ -101,7 +122,7 @@ component(authenticate){
 
 
 component(debugger){
-  color: var(--inverseColor);
-  background-color: var(--baseColor);
+  color: var(--baseColor);
+  background-color: var(--inverseColor);
 }
 

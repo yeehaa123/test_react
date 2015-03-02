@@ -1,7 +1,7 @@
 import '../../styles/sidebar.css';
 
 import React from 'react';
-import DebugState from './debugState.jsx';
+import DebugStateContainer from './debugState/debugStateContainer.jsx';
 import ControlPanelContainer from './controlPanel/controlPanelContainer.jsx'
 
 class Sidebar extends React.Component {
@@ -17,7 +17,7 @@ class Sidebar extends React.Component {
           <h1>_Unacademic</h1>
           <p> Learn By Dwelling</p>
         </div>
-        <DebugState />
+        <DebugStateContainer />
         <ControlPanelContainer />
       </div>
     )

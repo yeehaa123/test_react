@@ -25,10 +25,9 @@ class AppState extends BaseStore {
 
   get current() {
     let currentState = this._current.toJS();
-    let details = {};
-    details.isLatest = _Future.size < 1 ? true : false;
-    details.isEarliest = _History.size <= 1 ? true : false;
-    currentState.details = details;
+    let isLatest = _Future.size < 1 ? true : false;
+    let isEarliest = _History.size <= 1 ? true : false;
+    currentState.history = { isLatest, isEarliest };
     return currentState;
   }
 

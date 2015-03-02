@@ -6,15 +6,15 @@ class ControlPanelContainer extends React.Component {
 
   constructor(props){
     super(props);
-    let { user, mode, details } = AppState.current;
-    this.state = { user, mode, details };
+    let { user, mode, history } = AppState.current;
+    this.state = { user, mode, history };
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(){
     let state = AppState.current;
-    let { user, mode, details } = state;
-    this.setState({ user, mode, details });
+    let { user, mode, history } = state;
+    this.setState({ user, mode, history });
   }
 
   componentDidMount() {
@@ -26,8 +26,8 @@ class ControlPanelContainer extends React.Component {
   }
 
   render() {
-    let { user, mode, details } = this.state;
-    return <ControlPanel user={ user } mode= { mode } details={ details }/>;
+    let { user, mode, history } = this.state;
+    return <ControlPanel user={ user } mode= { mode } history={ history }/>;
   }
 };
 

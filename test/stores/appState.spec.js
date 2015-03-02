@@ -36,7 +36,7 @@ describe('AppState', () => {
 
   it('sets up the initial state', () => {
     let state = AppState.current;
-    let { isLatest, isEarliest } = state.details;
+    let { isLatest, isEarliest } = state.history;
     expect(state).to.include.keys('user', 'mode', 'timestamp');
     expect(isLatest).to.be.true;
     expect(isEarliest).to.be.true;
@@ -44,8 +44,8 @@ describe('AppState', () => {
 
   it('authenticates the user', () => {
     callback(actionAuthenticate);
-    let { user, details } = AppState.current;
-    let { isLatest, isEarliest } = details;
+    let { user, history } = AppState.current;
+    let { isLatest, isEarliest } = history;
     expect(user).to.equal('yeehaa');
     expect(isLatest).to.be.true;
     expect(isEarliest).to.be.false;
@@ -53,8 +53,8 @@ describe('AppState', () => {
 
   it('switches between modes', () => {
     callback(actionSwitchMode);
-    let { mode, details } = AppState.current;
-    let { isLatest, isEarliest } = details;
+    let { mode, history } = AppState.current;
+    let { isLatest, isEarliest } = history;
     expect(mode).to.equal('learn');
     expect(isLatest).to.be.true;
     expect(isEarliest).to.be.false;
@@ -67,7 +67,7 @@ describe('AppState', () => {
 
     it('succeeds', () => {
       callback(actionRevertHistory);
-      let { isLatest, isEarliest } = AppState.current.details;
+      let { isLatest, isEarliest } = AppState.current.history;
       expect(isLatest).to.be.false;
       expect(isEarliest).to.be.true;
     });
@@ -81,7 +81,7 @@ describe('AppState', () => {
 
     it('succeeds', () => {
       callback(actionForwardHistory);
-      let { isLatest, isEarliest } = AppState.current.details;
+      let { isLatest, isEarliest } = AppState.current.history;
       expect(isLatest).to.be.true;
       expect(isEarliest).to.be.false;
     });

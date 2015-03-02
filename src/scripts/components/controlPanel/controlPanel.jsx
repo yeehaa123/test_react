@@ -6,10 +6,10 @@ import ModeButtons from './modeButtons.jsx';
 class ControlPanel extends React.Component {
 
   render() {
-    let { user, mode, details } = this.props;
+    let { user, mode, history } = this.props;
     return (
       <section className="controlPanel">
-        <HistoryButtons isEarliest={ details.isEarliest } isLatest={ details.isLatest }/>
+        <HistoryButtons isEarliest={ history.isEarliest } isLatest={ history.isLatest }/>
         { user ? <ModeButtons mode={ mode }/> : <AuthenticateButton /> }
       </section>
     )

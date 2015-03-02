@@ -1,5 +1,6 @@
 import React from 'react';
 import Actions from '../../actions/index';
+import _ from 'lodash';
 
 class ModeButton extends React.Component {
 
@@ -10,7 +11,7 @@ class ModeButton extends React.Component {
   render(){
     let mode = this.props.mode;
     let currentMode = this.props.currentMode;
-    let buttonTitle = this.props.mode.toUpperCase();
+    let buttonTitle = _.capitalize(this.props.mode);
     let classes = currentMode === mode  ? 'active' : null;
 
     return (
