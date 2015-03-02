@@ -1,5 +1,7 @@
-import AppStateStore from './appState.js';
+import AppStateStore from './appState';
+import ModelStore from './collection';
 
 let AppState = new AppStateStore();
+let Model = new ModelStore();
 
-export { AppState };
+export { AppState, Model };

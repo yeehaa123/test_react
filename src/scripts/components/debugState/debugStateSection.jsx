@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'lodash';
 
 import DebugStateRow from './debugStateRow.jsx';
 
@@ -14,7 +15,9 @@ class DebugStateSection extends React.Component {
 
     return (
       <div>
-        <tr><th colSpan="2">{ title }</th></tr>
+        <tr>
+          <th colSpan="2">{ _.capitalize(title) }</th>
+        </tr>
         { rows }
       </div>
     )

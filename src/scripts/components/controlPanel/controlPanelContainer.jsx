@@ -12,8 +12,7 @@ class ControlPanelContainer extends React.Component {
   }
 
   onChange(){
-    let state = AppState.current;
-    let { user, mode, history } = state;
+    let { user, mode, history } = AppState.current;
     this.setState({ user, mode, history });
   }
 

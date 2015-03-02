@@ -1,4 +1,4 @@
 import React from 'react';
-import Unacademic from './components/unacademic.jsx';
+import UnacademicContainer from './components/unacademicContainer.jsx';
 
-React.render(<Unacademic />, document.body);
+React.render(<UnacademicContainer />, document.body);

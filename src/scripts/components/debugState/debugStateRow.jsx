@@ -1,9 +1,16 @@
 import React from 'react';
+import _ from 'lodash';
+
 class DebugStateRow extends React.Component {
 
   render(){
     let { title, data } = this.props;
-    return <tr><td>{title}</td><td>{ `${data}` }</td></tr>
+    return (
+      <tr>
+        <td>{ _.capitalize(title) }</td>
+        <td>{ `${_.capitalize(data)}` }</td>
+      </tr>
+    );
   }
 };
 

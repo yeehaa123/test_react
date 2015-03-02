@@ -1,35 +1,38 @@
 import React from 'react';
-import Card from './card.jsx';
 import _ from 'lodash';
-import faker from 'faker';
 
-class Waypoint {
-  constructor(index) {
-    this.id = index;
-    this.title = faker.lorem.words(getRandomInt(1,4)).join(' ');
-    this.image = faker.image.image();
-    this.curator = 'Yeehaa';
-    this.summary = faker.lorem.sentence();
-    this.description = _.times(getRandomInt(1,3), () => faker.lorem.paragraph() );
-    this.checkpoints = _.times(getRandomInt(2,6), () => faker.lorem.words(getRandomInt(1,4)).join(' '));
-  };
-};
-
-let waypoints = _.times(10, (i) => new Waypoint(i) );
+import { Model } from '../stores/index'
+import Card from './card.jsx';
+import Actions from '../actions/index'
 
 class Cards extends React.Component {
-  render(){
+  constructor(props){
+    super(props);
+    let collection = Model.collection;
+    this.state = { collection };
+    this.onChange = this.onChange.bind(this);
+  }
 
+  componentDidMount () {
+    Model.addChangeListener(this.onChange);
+  }
+
+  componentWillUnmount () {
+    Model.removeChangeListener(this.onChange);
+  }
+
+  onChange () {
+    let collection = Model.collection;
+    this.setState({ collection });
+  }
+
+  render(){
     return (
       <section className="cards">
-        { _.map(waypoints, (waypoint) => <Card key={ waypoint.id } model={ waypoint }/>) }
+        { _.map(this.state.collection, (model) => <Card key={ model.id } model={ model }/>) }
       </section>
     )
   }
 }
 
 export default Cards;
-
-function getRandomInt(min, max) {
-    return Math.floor(Math.random() * (max - min)) + min;
-}
