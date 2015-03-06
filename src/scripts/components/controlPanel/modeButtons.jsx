@@ -1,15 +1,13 @@
 import React from 'react';
 import ModeButton from './modeButton.jsx';
+import R from 'ramda';
 
 class ModeButtons extends React.Component {
 
   render(){
-    let modes = this.props.modes;
-    let currentMode = this.props.mode;
-    let modeButtons = modes.map((mode, index) => {
-      return <ModeButton key={ index } mode={ mode } currentMode={ currentMode }/>;
-    });
-
+    let createButtons = R.mapIndexed((mode, index) =>
+      <ModeButton key={ index } mode={ mode } current={ this.props.mode }/>);
+    let modeButtons = createButtons(this.props.modes);
     return (
       <section className="modeButtons">{ modeButtons }</section>
     );

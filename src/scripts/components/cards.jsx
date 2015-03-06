@@ -1,5 +1,5 @@
 import React from 'react';
-import _ from 'lodash';
+import R from 'ramda';
 
 import { Model } from '../stores/index'
 import Card from './card.jsx';
@@ -8,7 +8,7 @@ import Actions from '../actions/index'
 class Cards extends React.Component {
   constructor(props){
     super(props);
-    let collection = Model.collection;
+    let { collection } = Model;
     this.state = { collection };
     this.onChange = this.onChange.bind(this);
   }
@@ -22,15 +22,17 @@ class Cards extends React.Component {
   }
 
   onChange () {
-    let collection = Model.collection;
+    let { collection } = Model;
     this.setState({ collection });
   }
 
   render(){
+    let { collection } = this.state;
+    let createCards = R.map((model) => <Card key={ model.id } model={ model }/>);
+    let cards = createCards(collection);
+
     return (
-      <section className="cards">
-        { _.map(this.state.collection, (model) => <Card key={ model.id } model={ model }/>) }
-      </section>
+      <section className="cards">{ cards }</section>
     )
   }
 }

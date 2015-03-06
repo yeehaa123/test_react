@@ -4,19 +4,16 @@ import _ from 'lodash';
 
 class ModeButton extends React.Component {
 
-  switchMode(mode){
-    Actions.switchMode(mode);
+  switchMode(){
+    Actions.switchMode(this.props.mode);
   }
 
   render(){
-    let mode = this.props.mode;
-    let currentMode = this.props.currentMode;
-    let buttonTitle = _.capitalize(this.props.mode);
-    let classes = currentMode === mode  ? 'active' : null;
+    let classes = this.props.current === this.props.mode  ? 'active' : null;
 
     return (
-      <button className={ classes } onClick={ this.switchMode.bind(this, mode) }>
-        { buttonTitle }
+      <button className={ classes } onClick={ this.switchMode.bind(this) }>
+        { _.capitalize(this.props.mode) }
       </button>
     )
   }

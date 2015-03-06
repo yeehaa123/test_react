@@ -34,15 +34,15 @@ class DebugStateContainer extends React.Component {
 
   createDebugObject(){
     let state = AppState.current;
-    let { timestamp } = state;
-    state.timestamp = this.getTime(timestamp);
+    state.timestamp = this.getTime(state.timestamp);
     return this.divideDebugObject(state);
   }
 
   divideDebugObject(object){
     let dataArray = R.toPairs(object);
-    let createTitleData = (result, [ key, value ]) => {
-      if(R.is(Object, value)){
+    let createTitleData = (result, value, key) => {
+      console.log(value);
+      if(_.isObject(value)){
         result[key] = value;
       } else {
         result['general'] = result['general'] || {};

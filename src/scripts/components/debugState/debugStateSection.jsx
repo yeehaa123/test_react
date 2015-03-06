@@ -7,11 +7,8 @@ class DebugStateSection extends React.Component {
 
   render(){
     let { title, data } = this.props;
-    let rows = _.map(data, (value, key) => {
-      return (
-        <DebugStateRow key={ key } title={ key } data={ value }/>
-      );
-    });
+    let rows = _.map(data, (value, key) =>
+      <DebugStateRow key={ key } title={ key } data={ value }/>);
 
     return (
       <div>

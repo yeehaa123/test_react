@@ -16,6 +16,7 @@ var config = {
     ],
     vendor: [
       'react',
+      'ramda',
       'lodash',
       'reflux',
       'immutable',
@@ -29,7 +30,7 @@ var config = {
   devtool: 'eval-source-map',
   module: {
     loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/},
+      { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel?experimental'], exclude: /node_modules/},
       { test: /\.json$/, loader: 'json' },
       { test: /\.yml$/, loader: 'json!yaml' },
       { test: /\.css$/, loader: 'style-loader!css!postcss' },
