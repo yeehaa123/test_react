@@ -2,7 +2,6 @@ import faker from 'faker';
 import R from 'ramda';
 import Actions from '../actions/server.js'
 
-
 class Waypoint {
   constructor(index) {
     this.id = index;

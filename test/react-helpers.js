@@ -1,12 +1,7 @@
 import './bind-polyfill.js';
-import rewireModule from './rewireModule.js';
+require('es6-promise').polyfill();
 import React from 'react/addons';
 let TestUtils = React.addons.TestUtils;
 
-class StubComponent extends React.Component {
- render() { return (<div />); }
-};
 
-StubComponent.prototype.render = sinon.stub().returns(<div />);
-
-export { React, TestUtils, rewireModule, StubComponent };
+export { React, TestUtils };

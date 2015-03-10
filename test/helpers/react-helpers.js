@@ -28,6 +28,7 @@ if (!Function.prototype.bind) {
 import rewireModule from './rewireModule.js';
 import React from 'react/addons';
 let TestUtils = React.addons.TestUtils;
+
 class StubComponent extends React.Component {
  render() { return (<div />); }
 };

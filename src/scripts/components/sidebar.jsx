@@ -13,10 +13,10 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className="sidebar">
-        <div>
+        <section className="coverData">
           <h1>_Unacademic</h1>
           <p> Learn By Dwelling</p>
-        </div>
+        </section>
         <DebugStateContainer />
         <ControlPanelContainer />
       </div>

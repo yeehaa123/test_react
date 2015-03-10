@@ -18,7 +18,6 @@ var config = {
       'react',
       'ramda',
       'lodash',
-      'reflux',
       'immutable',
       'superagent'
     ]

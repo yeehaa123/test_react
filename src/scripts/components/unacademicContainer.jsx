@@ -31,7 +31,6 @@ class UnacademicContainer extends React.Component{
     AppState.removeChangeListener(this.onChange);
   }
 
-
   render() {
     return (
       <Unacademic />
