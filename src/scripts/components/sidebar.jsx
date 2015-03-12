@@ -2,7 +2,7 @@ import '../../styles/sidebar.css';
 
 import React from 'react';
 import DebugStateContainer from './debugState/debugStateContainer.jsx';
-import ControlPanelContainer from './controlPanel/controlPanelContainer.jsx'
+import ControlPanel from './controlPanel/controlPanel.jsx'
 
 class Sidebar extends React.Component {
 
@@ -18,10 +18,14 @@ class Sidebar extends React.Component {
           <p> Learn By Dwelling</p>
         </section>
         <DebugStateContainer />
-        <ControlPanelContainer />
+        <ControlPanel appState={ this.props.appState }/>
       </div>
     )
   }
 };
+
+Sidebar.propTypes = {
+  appState: React.PropTypes.object.isRequired
+} 
 
 export default Sidebar;

@@ -1,12 +1,15 @@
-import { React, TestUtils } from './helpers/react-helpers';
-import UnacademicContainer from '../src/scripts/components/unacademicContainer.jsx';
+import { React, TestUtils, appStateFixture } from './helpers/react-helpers';
+import Sidebar from '../src/scripts/components/sidebar.jsx';
 
 describe("Sidebar", () => {
   let container;
+  let appState;
 
   beforeEach(() => {
+    appState = appStateFixture; 
+
     container = React.renderToString(
-      <UnacademicContainer />
+      <Sidebar appState={ appState }/>
     );
   })
 

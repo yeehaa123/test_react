@@ -7,9 +7,14 @@ describe("Layout", () => {
   beforeEach(() => {
 
     let model = modelFixture;
+    let appState = {
+      history: {},
+      user: undefined,
+      mode: 'browse'
+    }
 
     container = React.renderToString(
-      <Unacademic model={ model } user={ undefined } mode={ 'browse' } />
+      <Unacademic model={ model } appState={ appState } />
       );
   })
 

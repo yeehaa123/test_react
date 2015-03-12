@@ -1,6 +1,7 @@
 var webpack = require('webpack');
 
 module.exports = {
+  target: 'node',
   entry: './test/index.js',
   output: {
     path: __dirname + '/test',

@@ -10,19 +10,19 @@ class UnacademicContainer extends React.Component{
 
   constructor(props){
     super(props);
-    let { user, mode } = AppState.current;
+    let appState = AppState.current;
     let model = Model;
-    this.state = { user, model, mode };
+    this.state = { AppState };
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(){
-    let { user, mode } = AppState.current;
+    let appState = AppState.current;
     let model = Model;
     if(!this.state.user || this.state.user !== user){
       Actions.getCollection({ user });
     }
-    this.setState({ user, mode, model });
+    this.setState({ appState });
   }
 
   componentDidMount() {
@@ -37,7 +37,7 @@ class UnacademicContainer extends React.Component{
   render() {
     let { model, user, mode } = this.state;
     return (
-      <Unacademic model={ model } mode={ mode } user={ user }/>
+      <Unacademic model={ model } appState={ appState }/>
     )
   }
 };

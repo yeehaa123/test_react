@@ -6,7 +6,7 @@ import ModeButtons from './modeButtons.jsx';
 class ControlPanel extends React.Component {
 
   render() {
-    let { user, mode, history } = this.props;
+    let { user, mode, history } = this.props.appState;
     return (
       <section className="controlPanel">
         <HistoryButtons isEarliest={ history.isEarliest } isLatest={ history.isLatest }/>
@@ -16,9 +16,8 @@ class ControlPanel extends React.Component {
   }
 };
 
-ControlPanel.PropTypes = {
-  user: React.PropTypes.string,
-  mode: React.PropTypes.string
+ControlPanel.propTypes = {
+  appState: React.PropTypes.object.isRequired,
 }
 
 export default ControlPanel;

@@ -1,21 +1,15 @@
-import { React, TestUtils, modelFixture } from './helpers/react-helpers';
+import { React, TestUtils, appStateFixture} from './helpers/react-helpers';
 import ControlPanel from '../src/scripts/components/controlPanel/controlPanel.jsx';
 
 describe("Control Panel", () => {
   let component;
-  let user = undefined;
-  let mode = 'browse';
-  let history = [];
-
-  let createControlPanel = (user, mode, history) => {
-    return React.renderToString(
-      <ControlPanel user={ user } mode={ mode } history={ history }/>
-    );
-  };
+  let appState = appStateFixture; 
 
   describe("without user", () => {
     beforeEach(() => {
-      component = createControlPanel(user, mode, history) 
+      component = React.renderToString(
+        <ControlPanel appState={ appState }/>
+      );
     })
 
     it("displays the signin button", () => {
@@ -26,8 +20,10 @@ describe("Control Panel", () => {
 
   describe("with user", () => {
     beforeEach(() => {
-      user = 'yeehaa';
-      component = createControlPanel(user, mode, history);
+      appState.user = 'yeehaa';
+      component = React.renderToString(
+        <ControlPanel appState={ appState }/>
+      );
     })
 
     it("displays the mode buttons", () => {

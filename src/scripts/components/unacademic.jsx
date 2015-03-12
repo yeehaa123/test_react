@@ -8,10 +8,10 @@ import Main from './main.jsx';
 class Unacademic extends React.Component{
 
   render() {
-    let { model } = this.props;
+    let { model, appState } = this.props;
     return (
       <section className="app">
-        <Sidebar />
+        <Sidebar appState={ appState }/>
         <Main model={ model }/>
       </section>
     )
@@ -19,9 +19,8 @@ class Unacademic extends React.Component{
 };
 
 Unacademic.propTypes = {
-  model: React.PropTypes.object,
-  user: React.PropTypes.string,
-  mode: React.PropTypes.oneOf(['browse', 'learn', 'curate']).isRequired
+  model: React.PropTypes.object.isRequired,
+  appState: React.PropTypes.object.isRequired
 }
 
 export default Unacademic;
