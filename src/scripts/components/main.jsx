@@ -4,9 +4,10 @@ import '../../styles/card.css';
 
 class Main extends React.Component {
   render() {
+    let { collection } = this.props.model;
     return (
       <section className="main">
-        <Cards />
+        <Cards collection={ collection }/>
         <section className="timeline"></section>
       </section>
     )

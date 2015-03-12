@@ -1,38 +1,25 @@
-if (!Function.prototype.bind) {
-  Function.prototype.bind = function(oThis) {
-    if (typeof this !== 'function') {
-      // closest thing possible to the ECMAScript 5
-      // internal IsCallable function
-      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-    }
-
-    var aArgs   = Array.prototype.slice.call(arguments, 1),
-        fToBind = this,
-        fNOP    = function() {},
-        fBound  = function() {
-          return fToBind.apply(this instanceof fNOP && oThis
-                 ? this
-                 : oThis,
-                 aArgs.concat(Array.prototype.slice.call(arguments)));
-        };
-
-    // test this.prototype in case of native functions binding:
-    if (this.prototype)
-      fNOP.prototype = this.prototype;
-    fBound.prototype = new fNOP();
-
-    return fBound;
-  };
-};
-
-import rewireModule from './rewireModule.js';
+import chai from 'chai';
+import R from 'ramda';
+import chaiString from 'chai-string';
 import React from 'react/addons';
-let TestUtils = React.addons.TestUtils;
 
-class StubComponent extends React.Component {
- render() { return (<div />); }
-};
+chai.use(chaiString);
+let expect = chai.expect;
 
-StubComponent.prototype.render = sinon.stub().returns(<div />);
 
-export { React, TestUtils, rewireModule, StubComponent };
+class Item {
+  constructor(id){
+    this.id = id;
+    this.description = ['ho'];
+    this.checkpoints = ['hi'];
+  }
+}
+
+let createItem = (id) => new Item(id);
+let range = R.times(R.identity, 5);
+let collection = R.map(createItem, range);
+let modelFixture = { collection };
+
+global.expect = expect;
+
+export { React, modelFixture };

@@ -13,7 +13,7 @@ class Sidebar extends React.Component {
   render() {
     return (
       <div className="sidebar">
-        <section className="coverData">
+        <section className="contentPanel">
           <h1>_Unacademic</h1>
           <p> Learn By Dwelling</p>
         </section>
