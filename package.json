@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "bundle.js",
-  "dependencies": {},
+  "dependencies": {
+    "gulp": "^3.8.11"
+  },
   "devDependencies": {
     "autoprefixer-core": "^5.1.7",
     "babel": "^4.1.1",
@@ -11,6 +13,7 @@
     "babel-loader": "^4.0.0",
     "chai": "^2.1.1",
     "chai-string": "^1.1.1",
+    "contextify": "^0.1.13",
     "css-loader": "^0.9.1",
     "csstyle": "^1.3.1",
     "extract-text-webpack-plugin": "^0.3.8",

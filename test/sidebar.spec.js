@@ -1,23 +1,27 @@
-import { React, TestUtils, appStateFixture } from './helpers/react-helpers';
+import { React, TestUtils, testdom, fixtures } from './helpers/react-helpers';
 import Sidebar from '../src/scripts/components/sidebar.jsx';
 
 describe("Sidebar", () => {
-  let container;
-  let appState;
+  let element;
 
   beforeEach(() => {
-    appState = appStateFixture; 
+    testdom('<html><body></body></html>');
 
-    container = React.renderToString(
-      <Sidebar appState={ appState }/>
+    let { appState } = fixtures;
+    let container = TestUtils.renderIntoDocument(
+      <Sidebar appState={ appState } />
     );
+
+    element = React.findDOMNode(container);
   })
 
   it("renders the content panel", () => {
-    expect(container).to.match(/class="contentPanel"/);
+    let contentPanel = element.querySelectorAll('.contentPanel');
+    expect(contentPanel.length).to.equal(1);
   });
 
   it("renders the control panel", () => {
-    expect(container).to.match(/class="controlPanel"/);
+    let controlPanel = element.querySelectorAll('.controlPanel');
+    expect(controlPanel.length).to.equal(1);
   });
 });

@@ -6,10 +6,6 @@ import ControlPanel from './controlPanel/controlPanel.jsx'
 
 class Sidebar extends React.Component {
 
-  shouldComponentUpdate(){
-    return false;
-  }
-
   render() {
     return (
       <div className="sidebar">

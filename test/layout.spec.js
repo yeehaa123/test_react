@@ -1,34 +1,33 @@
 import Unacademic from '../src/scripts/components/unacademic.jsx';
-import { React, TestUtils, modelFixture } from './helpers/react-helpers';
+import Main from '../src/scripts/components/main.jsx';
+import { React, TestUtils, fixtures, testdom } from './helpers/react-helpers';
 
 describe("Layout", () => {
-  let container;
+  let element;
 
   beforeEach(() => {
+    testdom('<html><body></body></html>');
 
-    let model = modelFixture;
-    let appState = {
-      history: {},
-      user: undefined,
-      mode: 'browse'
-    }
-
-    container = React.renderToString(
+    let { appState, model } = fixtures;
+    let container = TestUtils.renderIntoDocument(
       <Unacademic model={ model } appState={ appState } />
-      );
-  })
+    );
+
+    element = React.findDOMNode(container);
+  });
 
 
   it("renders the container", () => {
-    expect(container).to.match(/class="app"/);
+    expect(element.className).to.equal('app');
   });
 
   it("renders the sidebar", () => {
-    expect(container).to.match(/class="sidebar"/);
+    let sidebar = element.querySelectorAll('.sidebar');
+    expect(sidebar.length).to.equal(1);
   });
 
   it("renders the main area", () => {
-    expect(container).to.match(/class="main"/);
+    let main = element.querySelectorAll('.main');
+    expect(main.length).to.equal(1);
   });
-
 });

@@ -12,17 +12,24 @@ class UnacademicContainer extends React.Component{
     super(props);
     let appState = AppState.current;
     let model = Model;
-    this.state = { AppState };
+    this.state = { appState, model };
     this.onChange = this.onChange.bind(this);
   }
 
   onChange(){
     let appState = AppState.current;
     let model = Model;
-    if(!this.state.user || this.state.user !== user){
+    if(!this.state.user || this.state.user !== appState.user){
+      let { user  } = appState;
       Actions.getCollection({ user });
     }
-    this.setState({ appState });
+    this.setState({ appState, model });
+
+    // Move to a different spot in the data flow
+
+    // let origin = location.origin;
+    // let url = `${ origin }/#/${ appState.user ? appState.user : '' }/${ appState.mode }`;
+    // location.assign(url);
   }
 
   componentDidMount() {
@@ -35,7 +42,7 @@ class UnacademicContainer extends React.Component{
   }
 
   render() {
-    let { model, user, mode } = this.state;
+    let { model, appState } = this.state;
     return (
       <Unacademic model={ model } appState={ appState }/>
     )

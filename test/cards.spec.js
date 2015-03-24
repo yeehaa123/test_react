@@ -1,16 +1,23 @@
-import { React, TestUtils, modelFixture } from './helpers/react-helpers';
+import { React, TestUtils, fixtures, testdom } from './helpers/react-helpers';
 import Cards from '../src/scripts/components/cards.jsx';
 
 describe("Cards", () => {
-  let component;
+  let element;
 
   beforeEach(() => {
-    component = React.renderToString(
-      <Cards collection={ modelFixture.collection }/>
+    testdom('<html><body></body></html>');
+
+    let { model } = fixtures;
+
+    let container = TestUtils.renderIntoDocument(
+      <Cards collection={ model.collection } />
     );
+
+    element = React.findDOMNode(container);
   })
 
   it("renders the cards", () => {
-    expect(component).to.have.entriesCount('class="card"', 5);
+    let cards = element.querySelectorAll('.card');
+    expect(cards.length).to.equal(5);
   });
 });

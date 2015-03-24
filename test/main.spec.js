@@ -1,20 +1,27 @@
-import { React, modelFixture } from './helpers/react-helpers';
+import { React, TestUtils, fixtures, testdom } from './helpers/react-helpers';
 import Main from '../src/scripts/components/main.jsx';
 
 describe("Main", () => {
-  let component;
+  let element;
 
   beforeEach(() => {
-    component = React.renderToString(
-      <Main model={ modelFixture }/>
+    testdom('<html><body></body></html>');
+
+    let { model } = fixtures;
+    let container = TestUtils.renderIntoDocument(
+      <Main model={ model } />
     );
+
+    element = React.findDOMNode(container);
   })
 
   it("renders the cards area", () => {
-    expect(component).to.match(/class="cards"/);
+    let cards = element.querySelectorAll('.cards');
+    expect(cards.length).to.equal(1);
   });
 
   it("renders the timeline area", () => {
-    expect(component).to.match(/class="timeline"/);
+    let timeline = element.querySelectorAll('.timeline');
+    expect(timeline.length).to.equal(1);
   });
 });

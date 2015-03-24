@@ -1,19 +1,15 @@
 var webpack = require('webpack');
+var spawn = require('child_process').spawn;
+var config = require('./config/mocha-config.js');
+var child;
 
-module.exports = {
-  target: 'node',
-  entry: './test/index.js',
-  output: {
-    path: __dirname + '/test',
-    filename: 'testBundle.js'
-  },
-  module: {
-    noParse: [],
-    loaders: [
-      { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel?experimental'], exclude: /node_modules/},
-      { test: /\.json$/, loader: 'json' },
-      { test: /\.yml$/, loader: 'json!yaml' },
-      { test: /\.(css|png|woff)$/, loader: 'url-loader?limit=100000' }
-    ]
-  }
-}
+var compiler = webpack(config);
+
+compiler.watch(200, function(err, stats){
+  spawn('mocha', ['test/testBundle.js'], {stdio: 'inherit'})
+    .on('exit', function(error){
+      if(error !== null){
+        console.log('error');
+      }
+    });
+});

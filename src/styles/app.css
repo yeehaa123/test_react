@@ -76,7 +76,6 @@ component(main){
 }
 
 component(timeline){
-  display: none;
   height: 200px;
   background-color: var(--betweenBaseColor);
 }

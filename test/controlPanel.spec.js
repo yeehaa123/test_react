@@ -1,9 +1,9 @@
-import { React, TestUtils, appStateFixture} from './helpers/react-helpers';
+import { React, TestUtils, fixtures } from './helpers/react-helpers';
 import ControlPanel from '../src/scripts/components/controlPanel/controlPanel.jsx';
 
 describe("Control Panel", () => {
   let component;
-  let appState = appStateFixture; 
+  let { appState } = fixtures; 
 
   describe("without user", () => {
     beforeEach(() => {
